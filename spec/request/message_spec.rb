@@ -38,7 +38,9 @@ RSpec.describe "Graphs", type: :request do
     end
 
     it "destroys an existing graph" do
-
+      delete graph_path(graph_one.id)
+      expect(response).to have_http_status(:found)
+      expect(Graph.all.size).to eq(1)
     end
 
     it "does not show another users graph" do
@@ -48,7 +50,10 @@ RSpec.describe "Graphs", type: :request do
     end
 
     it "does not destroy another users graph" do
-
+      expect {
+        delete graph_path(graph_two.id)
+      }.to raise_error(Pundit::NotAuthorizedError)
+      expect(Graph.all.size).to eq(2)
     end
 
     it "does not update another users graph" do

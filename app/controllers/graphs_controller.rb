@@ -1,4 +1,7 @@
 class GraphsController < ApplicationController
+  before_action :set_graph, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
+
   def index
     @graphs = Graph.all
     authorize @graphs
@@ -6,8 +9,6 @@ class GraphsController < ApplicationController
   end
 
   def show
-    @graph = Graph.find(params[:id])
-    authorize @graph
   end
 
   def new
@@ -29,19 +30,23 @@ class GraphsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
-
   end
 
   def destroy
-
+    @graph.destroy
+    redirect_to graphs_path
   end
 
   private
   def graph_params
     params.require(:graph).permit(:name, :g_type, :description)
+  end
+
+  def set_graph
+    @graph = Graph.find(params[:id])
+    authorize @graph
   end
 end
