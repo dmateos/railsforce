@@ -1,15 +1,14 @@
 require "rails_helper"
 
 RSpec.describe "Graphs", type: :request do
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:user_two) { FactoryGirl.create(:user, email: "test2@test.com") }
+
+  let!(:graph_one) { FactoryGirl.create(:graph, user: user, tag: "test-graph-1") }
+  let!(:graph_two) { FactoryGirl.create(:graph, user: user_two, tag: "test-graph-2") }
+  let!(:headers) { { "Content-Type" => "application/json", "ACCEPT" => "application/json" } }
+
   context "authed" do
-    let!(:headers) { { "Content-Type" => "application/json", "ACCEPT" => "application/json" } }
-
-    let!(:user) { FactoryGirl.create(:user) }
-    let!(:user_two) { FactoryGirl.create(:user, email: "test2@test.com") }
-
-    let!(:graph_one) { FactoryGirl.create(:graph, user: user, tag: "test-graph-1") }
-    let!(:graph_two) { FactoryGirl.create(:graph, user: user_two, tag: "test-graph-2") }
-
     before :each do
       login(user.email, user.password)
     end
