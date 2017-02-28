@@ -63,3 +63,6 @@ RSpec.configure do |config|
   end
 end
 
+def login(user, password)
+  post user_session_path, params: { "user[email]" => user, "user[password]" => password }
+end

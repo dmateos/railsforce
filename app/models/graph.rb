@@ -3,4 +3,5 @@ class Graph < ApplicationRecord
   validates :user, presence: true
   validates :name, presence: true
   validates :type, presence: true
+  validates_uniqueness_of :tag
 end
