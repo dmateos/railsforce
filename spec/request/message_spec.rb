@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe "Graphs", type: :request do
   context "authed" do
+    let!(:headers) { { "Content-Type" => "application/json", "ACCEPT" => "application/json" } }
+
     let!(:user) { FactoryGirl.create(:user) }
     let!(:user_two) { FactoryGirl.create(:user, email: "test2@test.com") }
 
@@ -14,14 +16,21 @@ RSpec.describe "Graphs", type: :request do
 
     it "lists all graphs for a given user" do
       get graphs_path
-
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include("test-graph-1")
-      expect(response.body).to_not include("test-graph-2")
+      expect(response.body).to include(graph_one.tag)
+      expect(response.body).to_not include(graph_two.tag)
     end
 
     it "creates a new graph" do
+      post graphs_path, params: '{ "graph": { "name": "test-graph-3", "g_type": "test" } }', headers: headers
+      expect(response).to have_http_status(:found)
+      expect(Graph.all.size).to eq(3)
+    end
 
+    it "shows a graph" do
+      get graph_path(graph_one.id)
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include(graph_one.tag)
     end
 
     it "updates an existing graph" do
@@ -32,12 +41,26 @@ RSpec.describe "Graphs", type: :request do
 
     end
 
+    it "does not show another users graph" do
+      expect {
+        get graph_path(graph_two.id)
+      }.to raise_error(Pundit::NotAuthorizedError)
+    end
+
     it "does not destroy another users graph" do
 
     end
 
     it "does not update another users graph" do
 
+    end
+  end
+
+  context "unauthed" do
+    it "does not allow graphs page to be viewed" do
+      expect {
+        get graphs_path
+      }.to raise_error(Pundit::NotAuthorizedError)
     end
   end
 end
