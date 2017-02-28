@@ -33,6 +33,8 @@ class GraphsController < ApplicationController
   end
 
   def update
+    @graph.update
+    redirect_to @graph
   end
 
   def destroy

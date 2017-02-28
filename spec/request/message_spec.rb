@@ -67,5 +67,18 @@ RSpec.describe "Graphs", type: :request do
         get graphs_path
       }.to raise_error(Pundit::NotAuthorizedError)
     end
+  
+    it "does not allow graph page to me viewed" do
+      expect {
+        get graph_path(graph_one.id)
+      }.to raise_error(Pundit::NotAuthorizedError)
+    end
+
+    it "does not allow a graph to be destroyed" do
+      expect {
+        delete graph_path(graph_two.id)
+      }.to raise_error(Pundit::NotAuthorizedError)
+      expect(Graph.all.size).to eq(2)
+    end
   end
 end
