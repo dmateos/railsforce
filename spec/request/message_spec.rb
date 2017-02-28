@@ -67,7 +67,7 @@ RSpec.describe "Graphs", type: :request do
       }.to raise_error(Pundit::NotAuthorizedError)
     end
   
-    it "does not allow graph page to me viewed" do
+    it "does not allow a users graph page to be viewed" do
       expect {
         get graph_path(graph_one.id)
       }.to raise_error(Pundit::NotAuthorizedError)
