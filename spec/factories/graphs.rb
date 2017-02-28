@@ -3,7 +3,7 @@ FactoryGirl.define do
     user nil
     name "MyString"
     description "MyString"
-    type 1
+    g_type 1
     tag "MyString"
   end
 end

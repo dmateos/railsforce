@@ -4,7 +4,7 @@ class CreateGraphs < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.string :name
       t.string :description
-      t.integer :type
+      t.integer :g_type
       t.string :tag
 
       t.timestamps

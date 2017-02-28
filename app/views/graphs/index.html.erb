@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Tag</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @graphs.each do |graph| %>
+        <tr>
+          <td> <%= graph.id %> </td>
+          <td> <%= graph.g_type %> </td>
+          <td> <%= graph.description %> </td>
+          <td> <%= graph.user.email %> </td>
+          <td> <%= graph.tag %> </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

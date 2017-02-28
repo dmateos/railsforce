@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170228170811) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "description"
-    t.integer  "type"
+    t.integer  "g_type"
     t.string   "tag"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
