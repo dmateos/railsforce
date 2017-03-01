@@ -11,7 +11,6 @@ var Chart = React.createClass({
       this.props.options
     );
 
-    //this.timer = setInterval(this.tick, 1000);
     this.setupSubscription();
   },
 
@@ -29,15 +28,6 @@ var Chart = React.createClass({
         series.addPoint([data["x"], data["y"]], true, true);
       },
     });
-  },
-
-  tick() {
-    var series = this.chart.series[0];
-    var x = (new Date()).getTime();
-    var y = Math.round(series.data.slice(-1)[0]['y'] + (Math.random() * 10 * (Math.round(Math.random()) * 2 - 1)));
-    if(y < 0)
-      y = -y;
-    series.addPoint([x, y], true, true);
   },
 
   //Destroy chart before unmount.
