@@ -18,7 +18,9 @@ var Chart = React.createClass({
     par = this;
     var series = this.chart.series[0];
 
-    App.messages = App.cable.subscriptions.create({ channel: "DataSequenceChannel", graph: 1}, {
+    App.messages = App.cable.subscriptions.create(
+        { channel: "DataSequenceChannel", graph: this.props.graph_id }, 
+      {
       connected() {
         console.log("connected"); 
       },
@@ -47,7 +49,12 @@ var ChartContainer = React.createClass({
   render() {
     console.log(this.props.options);
     return(
-      <Chart container="chart" options={this.props.options} modules={[]}></Chart>
+      <Chart 
+        container="chart" 
+        graph_id={this.props.graph_id}
+        options={this.props.options} 
+        modules={[]}>
+      </Chart>
     )
   }
 });

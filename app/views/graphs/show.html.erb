@@ -27,7 +27,7 @@
   </tbody>
 </table>
 
-<%= react_component 'ChartContainer', options: @graph_config %>
+<%= react_component 'ChartContainer', options: @graph_config, graph_id: @graph.id %>
 
 <div> 
   <pre> <%= @graph.raw_graph_settings %> </pre>
