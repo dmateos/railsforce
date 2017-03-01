@@ -12,7 +12,7 @@
   <tbody>
     <% @graphs.each do |graph| %>
         <tr>
-          <td> <%= graph.id %> </td>
+          <td> <%= link_to graph.id, graph %> </td>
           <td> <%= graph.g_type %> </td>
           <td> <%= graph.description %> </td>
           <td> <%= graph.user.email %> </td>

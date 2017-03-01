@@ -15,7 +15,10 @@
 //= require turbolinks
 //= require react
 //= require react_ujs
+//= require highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/modules/funnel
 //= require components
-//= require_tree .
-//= require jquery
 //= require bootstrap-sprockets
+//= require_tree .
+
