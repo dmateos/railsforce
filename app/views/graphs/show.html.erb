@@ -1,3 +1,5 @@
+<%= react_component 'ChartContainer', options: @graph_config, graph_id: @graph.id %>
+
 <table class="table">
   <thead>
     <tr>
@@ -26,8 +28,6 @@
     </tr>
   </tbody>
 </table>
-
-<%= react_component 'ChartContainer', options: @graph_config, graph_id: @graph.id %>
 
 <div> 
   <pre> <%= @graph.raw_graph_settings %> </pre>

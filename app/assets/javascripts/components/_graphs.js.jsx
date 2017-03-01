@@ -27,7 +27,7 @@ var Chart = React.createClass({
 
       received(data) {
         console.log(data);
-        series.addPoint([data["x"], data["y"]], true, true);
+        series.addPoint(parseInt(data["y"]), true, false);
       },
     });
   },
