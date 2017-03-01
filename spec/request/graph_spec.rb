@@ -33,7 +33,6 @@ RSpec.describe "Graphs", type: :request do
     end
 
     it "updates an existing graph" do
-
     end
 
     it "destroys an existing graph" do
@@ -56,7 +55,6 @@ RSpec.describe "Graphs", type: :request do
     end
 
     it "does not update another users graph" do
-
     end
   end
 
