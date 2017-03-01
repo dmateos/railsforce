@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228170811) do
+ActiveRecord::Schema.define(version: 20170301155441) do
+
+  create_table "data_sequences", force: :cascade do |t|
+    t.integer  "graph_id"
+    t.string   "meta"
+    t.string   "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["graph_id"], name: "index_data_sequences_on_graph_id"
+  end
 
   create_table "graphs", force: :cascade do |t|
     t.integer  "user_id"

@@ -3,10 +3,11 @@
     <tr>
       <th> ID </th>
       <th> Name </th>
-      <th> Desc </th>
       <th> Type </th>
+      <th> Desc </th>
       <th> User </th>
       <th> Tag </th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -17,9 +18,15 @@
       <td> <%= @graph.g_type %> </td>
       <td> <%= @graph.user.email %> </td>
       <td> <%= @graph.tag %> </td>
+      <td>
+        <%= link_to "edit", edit_graph_path(@graph) %> 
+      </td>
     </tr>
   </tbody>
 </table>
-<div> <pre> <%= @graph.raw_graph_settings %> </pre></div>
 
 <%= react_component 'ChartContainer', options: @graph_config %>
+
+<div> 
+  <pre> <%= @graph.raw_graph_settings %> </pre>
+</div>

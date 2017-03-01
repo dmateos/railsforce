@@ -2,10 +2,12 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Name</th>
       <th>Type</th>
       <th>Description</th>
       <th>User</th>
       <th>Tag</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -13,10 +15,15 @@
     <% @graphs.each do |graph| %>
         <tr>
           <td> <%= link_to graph.id, graph %> </td>
+          <td> <%= graph.name %> </td>
           <td> <%= graph.g_type %> </td>
           <td> <%= graph.description %> </td>
           <td> <%= graph.user.email %> </td>
           <td> <%= graph.tag %> </td>
+          <td> 
+            <%= link_to "view", graph_path(graph) %> 
+            <%= link_to "edit", edit_graph_path(graph) %> 
+          </td>
         </tr>
     <% end %>
   </tbody>
