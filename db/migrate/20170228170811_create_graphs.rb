@@ -6,6 +6,7 @@ class CreateGraphs < ActiveRecord::Migration[5.0]
       t.string :description
       t.integer :g_type
       t.string :tag
+      t.string :raw_graph_settings
 
       t.timestamps
     end

@@ -33,6 +33,9 @@ RSpec.describe "Graphs", type: :request do
     end
 
     it "updates an existing graph" do
+      put graph_path(graph_one.id), params: '{ "graph": { "name": "updated-name" } }', headers: headers
+      expect(response).to have_http_status(:found)
+      expect(Graph.find(graph_one.id).name).to eq("updated-name")
     end
 
     it "destroys an existing graph" do
@@ -55,6 +58,10 @@ RSpec.describe "Graphs", type: :request do
     end
 
     it "does not update another users graph" do
+      expect {
+        put graph_path(graph_two.id), params: '{ "graph": { "name": "updated-name" } }', headers: headers
+      }.to raise_error(Pundit::NotAuthorizedError)
+      expect(Graph.find(graph_two.id).name).to eq(graph_two.name)
     end
   end
 

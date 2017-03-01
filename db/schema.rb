@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(version: 20170228170811) do
     t.string   "description"
     t.integer  "g_type"
     t.string   "tag"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "raw_graph_settings"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.index ["user_id"], name: "index_graphs_on_user_id"
   end
 

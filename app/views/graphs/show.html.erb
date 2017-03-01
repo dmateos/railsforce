@@ -1,8 +1,25 @@
-<div> <%= @graph.id %> </div>
-<div> <%= @graph.name %> </div>
-<div> <%= @graph.description %> </div>
-<div> <%= @graph.g_type %> </div>
-<div> <%= @graph.user.email %> </div>
-<div> <%= @graph.tag %> </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th> ID </th>
+      <th> Name </th>
+      <th> Desc </th>
+      <th> Type </th>
+      <th> User </th>
+      <th> Tag </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <%= @graph.id %> </td>
+      <td> <%= @graph.name %> </td>
+      <td> <%= @graph.description %> </td>
+      <td> <%= @graph.g_type %> </td>
+      <td> <%= @graph.user.email %> </td>
+      <td> <%= @graph.tag %> </td>
+    </tr>
+  </tbody>
+</table>
+<div> <pre> <%= @graph.raw_graph_settings %> </pre></div>
 
-<%= react_component 'ChartContainer' %>
+<%= react_component 'ChartContainer', options: @graph_config %>

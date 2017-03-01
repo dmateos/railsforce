@@ -5,5 +5,6 @@ FactoryGirl.define do
     description "MyString"
     g_type 1
     tag "MyString"
+    raw_graph_settings ""
   end
 end

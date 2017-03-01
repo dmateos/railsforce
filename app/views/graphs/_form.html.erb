@@ -1,0 +1,30 @@
+<%= form_for(@graph, html: { class: "form-horizontal" } ) do |f| %>
+  <div class="input-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="input-group">
+    <%= f.label :g_type %>
+    <%= f.text_field :g_type, class: "form-control" %>
+  </div>
+
+  <div class="input-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+
+  <div class="input-group">
+    <%= f.label :tag %>
+    <%= f.text_field :tag, class: "form-control" %>
+  </div>
+
+  <div class="input-group">
+    <%= f.label :raw_graph_settings %>
+    <%= f.text_area :raw_graph_settings, class: "form-control" %>
+  </div>
+
+  <div class="input-group-btn">
+    <%= f.submit "submit", class: "btn btn-default" %>
+  </div>
+<% end %>

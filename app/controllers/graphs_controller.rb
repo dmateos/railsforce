@@ -9,6 +9,11 @@ class GraphsController < ApplicationController
   end
 
   def show
+    begin
+      @graph_config = JSON.parse(@graph.raw_graph_settings)
+    rescue JSON::ParserError
+      @graph_config = "";
+    end
   end
 
   def new
@@ -33,8 +38,11 @@ class GraphsController < ApplicationController
   end
 
   def update
-    @graph.update
-    redirect_to @graph
+    if @graph.update(graph_params)
+      redirect_to @graph
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -44,7 +52,7 @@ class GraphsController < ApplicationController
 
   private
   def graph_params
-    params.require(:graph).permit(:name, :g_type, :description, :tag)
+    params.require(:graph).permit(:name, :g_type, :description, :tag, :raw_graph_settings)
   end
 
   def set_graph

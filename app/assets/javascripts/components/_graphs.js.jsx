@@ -1,39 +1,3 @@
-options = {
-    chart: {
-      type: 'area',
-      plotBorderWidth: 0,
-    },
-
-    title: {
-        text: 'Monthly Average Temperature',
-        x: -20 //center
-    },
-    subtitle: {
-        text: 'Source: WorldClimate.com',
-        x: -20
-    },
-    xAxis: {
-      type: 'datetime'
-    },
-    yAxis: {
-      gridLineWidth: 0.3,
-    },
-    tooltip: {
-        valueSuffix: '°C'
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0
-    },
-    series: [{
-        name: 'Tokyo',
-        lineWidth: 2,
-        data: [7.0, 6.9, 9.5, 10.0, 5.5]
-    }]
-}
-
 var Chart = React.createClass({
   componentDidMount() {
     if (this.props.modules) {
@@ -74,8 +38,9 @@ var Chart = React.createClass({
 
 var ChartContainer = React.createClass({
   render() {
+    console.log(this.props.options);
     return(
-      <Chart container="chart" options={options} modules={[]}></Chart>
+      <Chart container="chart" options={this.props.options} modules={[]}></Chart>
     )
   }
 });
