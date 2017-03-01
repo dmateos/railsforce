@@ -11,7 +11,24 @@ var Chart = React.createClass({
       this.props.options
     );
 
-    this.timer = setInterval(this.tick, 1000);
+    //this.timer = setInterval(this.tick, 1000);
+    this.setupSubscription();
+  },
+
+  setupSubscription() {
+    par = this;
+    var series = this.chart.series[0];
+
+    App.messages = App.cable.subscriptions.create({ channel: "DataSequenceChannel", graph: 1}, {
+      connected() {
+        console.log("connected"); 
+      },
+
+      received(data) {
+        console.log(data);
+        series.addPoint([data["x"], data["y"]], true, true);
+      },
+    });
   },
 
   tick() {
