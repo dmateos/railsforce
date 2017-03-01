@@ -44,7 +44,7 @@ class GraphsController < ApplicationController
 
   private
   def graph_params
-    params.require(:graph).permit(:name, :g_type, :description)
+    params.require(:graph).permit(:name, :g_type, :description, :tag)
   end
 
   def set_graph
