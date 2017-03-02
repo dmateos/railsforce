@@ -22,8 +22,9 @@ var Chart = React.createClass({
     var series = this.chart.series[0];
     if(data) {
       data.forEach(function(d) {
-        series.addPoint(parseFloat(d.y), true, false);
+        series.addPoint(parseFloat(d.y), false, false);
       });
+      this.chart.redraw()
     }
   },
 
