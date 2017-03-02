@@ -2,6 +2,7 @@ Put auth back on for API...
 Graph options
 How to do data?
 Load initial sequences also... 
+Parser stage which also hooks to graphs
 
 DONE:
 Hookup actual value for graph subscription

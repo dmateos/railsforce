@@ -61,3 +61,4 @@ gem 'devise'
 gem 'pundit'
 
 gem "highcharts-rails"
+gem "rails-erd"
