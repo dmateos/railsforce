@@ -12,6 +12,21 @@ var Chart = React.createClass({
     );
 
     this.setupSubscription();
+    this.loadExisting();
+  },
+
+  loadExisting() {
+    var series = this.chart.series[0];
+    if(this.props.data) {
+      console.log(this.props.data)
+      this.props.data.forEach(function(d) {
+        series.addPoint(parseFloat(d.y), true, false);
+      });
+    }
+  },
+
+  loadExistingAjax() {
+    //todo
   },
 
   setupSubscription() {
@@ -53,6 +68,7 @@ var ChartContainer = React.createClass({
         container="chart" 
         graph_id={this.props.graph_id}
         options={this.props.options} 
+        data={this.props.data}
         modules={[]}>
       </Chart>
     )

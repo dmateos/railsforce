@@ -14,6 +14,9 @@ class GraphsController < ApplicationController
     rescue JSON::ParserError
       @graph_config = "";
     end
+
+    parser = SequenceParser.new(@graph.data_sequences, multi: true)
+    @data = parser.parse
   end
 
   def new
