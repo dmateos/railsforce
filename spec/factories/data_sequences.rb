@@ -2,6 +2,6 @@ FactoryGirl.define do
   factory :data_sequence do
     graph ""
     meta "MyString"
-    data "MyString"
+    data "0.0,1.0"
   end
 end
