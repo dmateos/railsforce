@@ -12,20 +12,30 @@ var Chart = React.createClass({
     );
 
     this.setupSubscription();
-    this.loadExisting();
+
+    if(this.props.ajax_path) {
+      this.loadExistingAjax();
+    }
   },
 
-  loadExisting() {
+  loadExisting(data) {
     var series = this.chart.series[0];
-    if(this.props.data) {
-      this.props.data.forEach(function(d) {
+    if(data) {
+      data.forEach(function(d) {
         series.addPoint(parseFloat(d.y), true, false);
       });
     }
   },
 
   loadExistingAjax() {
-    //todo
+    $.ajax({
+      url: this.props.ajax_path,
+      dataType: "json",
+      cache: false,
+      success: function(data) {
+       this.loadExisting(data) 
+      }.bind(this)
+    })
   },
 
   setupSubscription() {
@@ -65,7 +75,7 @@ var ChartContainer = React.createClass({
         container="chart" 
         graph_id={this.props.graph_id}
         options={this.props.options} 
-        data={this.props.data}
+        ajax_path={this.props.ajax_path}
         modules={[]}>
       </Chart>
     )

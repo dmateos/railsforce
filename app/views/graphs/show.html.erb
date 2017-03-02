@@ -1,4 +1,8 @@
-<%= react_component 'ChartContainer', options: @graph_config, graph_id: @graph.id, data: @data %>
+<%= react_component 'ChartContainer', 
+    options: @graph_config, 
+    graph_id: @graph.id, 
+    ajax_path: api_v1_data_sequence_path(@graph.id)
+%>
 
 <table class="table">
   <thead>
