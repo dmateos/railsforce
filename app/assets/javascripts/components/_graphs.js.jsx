@@ -18,7 +18,6 @@ var Chart = React.createClass({
   loadExisting() {
     var series = this.chart.series[0];
     if(this.props.data) {
-      console.log(this.props.data)
       this.props.data.forEach(function(d) {
         series.addPoint(parseFloat(d.y), true, false);
       });
@@ -37,11 +36,9 @@ var Chart = React.createClass({
         { channel: "DataSequenceChannel", graph: this.props.graph_id }, 
       {
       connected() {
-        console.log("connected"); 
       },
 
       received(data) {
-        console.log(data);
         series.addPoint(parseFloat(data["y"]), true, false);
       },
     });
