@@ -8,7 +8,7 @@ class SequenceParser
   attr_reader :data_sequence
 
   def initialize(data_sequence, options = {})
-    @data_sequence = data_sequenc
+    @data_sequence = data_sequence
     @options = options
   end
 
