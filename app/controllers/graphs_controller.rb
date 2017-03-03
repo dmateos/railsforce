@@ -1,6 +1,6 @@
 class GraphsController < ApplicationController
   before_action :set_graph, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized
+  #after_action :verify_authorized
 
   def index
     @graphs = Graph.all
@@ -14,9 +14,6 @@ class GraphsController < ApplicationController
     rescue JSON::ParserError
       @graph_config = "";
     end
-
-    #parser = SequenceParser.new(@graph.data_sequences, multi: true)
-    #@data = parser.parse
   end
 
   def new
@@ -60,6 +57,6 @@ class GraphsController < ApplicationController
 
   def set_graph
     @graph = Graph.find(params[:id])
-    authorize @graph
+    #authorize @graph
   end
 end

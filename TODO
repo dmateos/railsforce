@@ -3,6 +3,7 @@ Graph options
 How to do data?
 Parser stage which also hooks to graphs
 Alerts/Transmutes/Graph links
+Per series graphing, ehe h
 
 DONE:
 Hookup actual value for graph subscription

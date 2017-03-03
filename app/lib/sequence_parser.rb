@@ -13,12 +13,8 @@ class SequenceParser
   end
 
   def parse
-    if @options[:single]
-      return parse_single
-    elsif @options[:multi]
-      return parse_multiple
-    end
-
+    return parse_single if @options[:single]
+    return parse_multiple if @options[:multi]
     raise SequenceError.new("no option specified")
   end
 
