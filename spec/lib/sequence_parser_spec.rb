@@ -13,12 +13,14 @@ describe SequenceParser do
 
   it "parses a single sequence" do
     parser = SequenceParser.new(data_sequence, single: true)
-    expect(parser.parse).to eq({x: "0.0", y: "1.0"})
+    expect(parser.parse).to eq({series: 0, x: "0.0", y: "1.0"})
   end
 
   it "parses multiple sequences into a set" do
     parser = SequenceParser.new(DataSequence.all, multi: true)
-    expect(parser.parse).to eq([{x: "0.0", y: "1.0"}, {x: "0.0", y: "1.0"}])
+    expect(parser.parse).to eq(
+      [{series: 0, x: "0.0", y: "1.0"}, {series: 0, x: "0.0", y: "1.0"}]
+    )
   end
 
   it "throws exception if invalid parse option specified" do

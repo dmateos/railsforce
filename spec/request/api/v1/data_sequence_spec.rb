@@ -20,7 +20,7 @@ RSpec.describe "DataSequence API V1", type: :request do
     it "lists all the sequences for a given graph" do
       get api_v1_data_sequence_path(graph.id)
       expect(response).to have_http_status(:ok)
-      expect(response.body).to eq("[{\"x\":\"0.0\",\"y\":\"1.0\"},{\"x\":\"0.0\",\"y\":\"1.0\"}]")
+      expect(response.body).to eq("[{\"series\":0,\"x\":\"0.0\",\"y\":\"1.0\"},{\"series\":0,\"x\":\"0.0\",\"y\":\"1.0\"}]")
     end
 
     it "creates a new sequence for a given graph" do 

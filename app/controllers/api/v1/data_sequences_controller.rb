@@ -35,6 +35,6 @@ class Api::V1::DataSequencesController < ApplicationController
 
   private
   def data_sequence_params
-    params.require(:data_sequence).permit(:meta, :data)
+    params.require(:data_sequence).permit(:meta, :data, :series)
   end
 end

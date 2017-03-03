@@ -19,9 +19,10 @@ var Chart = React.createClass({
   },
 
   loadExisting(data) {
-    var series = this.chart.series[0];
     if(data) {
+      par = this;
       data.forEach(function(d) {
+        var series = par.chart.series[d.series];
         series.addPoint(parseFloat(d.y), false, false);
       });
       this.chart.redraw()
@@ -40,8 +41,7 @@ var Chart = React.createClass({
   },
 
   setupSubscription() {
-    var series = this.chart.series[0];
-
+    par = this;
     App.messages = App.cable.subscriptions.create(
         { channel: "DataSequenceChannel", graph: this.props.graph_id }, 
       {
@@ -49,6 +49,7 @@ var Chart = React.createClass({
       },
 
       received(data) {
+        var series = par.chart.series[data.series];
         series.addPoint(parseFloat(data["y"]), true, false);
       },
     });

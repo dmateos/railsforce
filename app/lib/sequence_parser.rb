@@ -8,7 +8,7 @@ class SequenceParser
   attr_reader :data_sequence
 
   def initialize(data_sequence, options = {})
-    @data_sequence = data_sequence;
+    @data_sequence = data_sequenc
     @options = options
   end
 
@@ -21,10 +21,10 @@ class SequenceParser
   private
   def parse_single(ds = data_sequence)
     x, y = ds.data.split(",")
-    { x: x, y: y }
+    { series: ds.series, x: x, y: y }
   end
 
   def parse_multiple
-    data_sequence.map { |seq| parse_single(seq) } 
+    data_sequence.map { |seq| parse_single(seq) }
   end
 end
