@@ -1,44 +1,40 @@
-module Api
-  module V1
-    class DataSequencesController < ApplicationController
-      skip_before_action :verify_authenticity_token
+class Api::V1::DataSequencesController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
-      def show
-        @graph = Graph.find(params[:id])
+  def show
+    @graph = Graph.find(params[:id])
 
-        if @graph
-          #authorize @graph
-          sequences = @graph.data_sequences
-          parser = SequenceParser.new(sequences, multi: true)
-          render json: parser.parse.to_json and return
-        end
+    if @graph
+      #authorize @graph
+      sequences = @graph.data_sequences
+      parser = SequenceParser.new(sequences, multi: true)
+      render json: parser.parse.to_json and return
+    end
 
-        render json: :error
-      end
+    render json: :error
+  end
 
-      def create
-        @graph = Graph.find(params[:id])
+  def create
+    @graph = Graph.find(params[:id])
 
-        if @graph
-          #authorize @graph
+    if @graph
+      #authorize @graph
 
-          @data_sequence = DataSequence.create(data_sequence_params)
-          @data_sequence.graph = @graph
+      @data_sequence = DataSequence.create(data_sequence_params)
+      @data_sequence.graph = @graph
 
-          #authorize @data_sequence
+      #authorize @data_sequence
 
-          if @data_sequence.save
-            render json: @data_sequence.id and return
-          end
-        end
-
-        render json: :error
-      end
-
-      private
-      def data_sequence_params
-        params.require(:data_sequence).permit(:meta, :data)
+      if @data_sequence.save
+        render json: @data_sequence.id and return
       end
     end
+
+    render json: :error
+  end
+
+  private
+  def data_sequence_params
+    params.require(:data_sequence).permit(:meta, :data)
   end
 end

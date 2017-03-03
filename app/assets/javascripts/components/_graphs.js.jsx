@@ -40,7 +40,6 @@ var Chart = React.createClass({
   },
 
   setupSubscription() {
-    par = this;
     var series = this.chart.series[0];
 
     App.messages = App.cable.subscriptions.create(
