@@ -18,11 +18,9 @@ class Api::V1::DataSequencesController < ApplicationController
     @graph = Graph.find(params[:id])
 
     if @graph
-      #authorize @graph
-
       @data_sequence = DataSequence.create(data_sequence_params)
       @data_sequence.graph = @graph
-
+      #authorize @graph
       #authorize @data_sequence
 
       if @data_sequence.save

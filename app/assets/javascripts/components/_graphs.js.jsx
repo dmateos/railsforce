@@ -5,17 +5,16 @@ var Chart = React.createClass({
         module(Highcharts);
       });
      }
-    // Set container which the chart should render to.
+
     this.chart = new Highcharts[this.props.type || "Chart"](
       this.props.container,
       this.props.options
     );
 
-    this.setupSubscription();
-
     if(this.props.ajax_path) {
       this.loadExistingAjax();
     }
+    this.setupSubscription();
   },
 
   loadExisting(data) {
@@ -35,7 +34,7 @@ var Chart = React.createClass({
       dataType: "json",
       cache: false,
       success: function(data) {
-       this.loadExisting(data) 
+        this.loadExisting(data) 
       }.bind(this)
     })
   },
@@ -55,12 +54,10 @@ var Chart = React.createClass({
     });
   },
 
-  //Destroy chart before unmount.
   componentWillUnmount() {
     this.chart.destroy();
   },
 
-  //Create the div which the chart will be rendered to.
   render() {
     return (
       <div id={this.props.container}> </div>
